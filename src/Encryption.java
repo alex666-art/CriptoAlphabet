@@ -19,8 +19,8 @@ public class Encryption {
                 } else if (Character.isUpperCase(textChar[i])) {
                     while (textChar[i] != alphabet.getUP_CASE()[index]) index++;
                     index = index + step;
-                    if (index > 30) {
-                        index -= 31;
+                    if (index > 32) {
+                        index -= 33;
                     }
                     textChar[i] = alphabet.getUP_CASE()[index];
                 }
