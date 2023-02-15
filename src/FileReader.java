@@ -1,23 +1,22 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+
+import static java.nio.file.Files.readAllBytes;
 
 public class FileReader {
 
-    public String readText(String path) throws IOException {
+    public String readText(String pathOriginal) {
+        Path path = Path.of(pathOriginal);
         String result = "";
-        try (RandomAccessFile randomAccessFile = new RandomAccessFile(path, "r");
-             FileChannel channel = randomAccessFile.getChannel()) {
-
-            ByteBuffer byteBuffer = ByteBuffer.allocate((int) channel.size());
-            StringBuilder builder = new StringBuilder();
-            channel.read(byteBuffer);
-            byteBuffer.flip();
-            while (byteBuffer.hasRemaining()) {
-                builder.append((char) byteBuffer.get());
-            }
-            result = String.valueOf(builder);
+        try {
+            byte[] arrayBytes = readAllBytes(path);
+            result = new String(arrayBytes, StandardCharsets.UTF_8);
+        } catch (FileNotFoundException e) {
+            return null;
+        } catch (IOException e) {
+            return null;
         }
         return result;
     }
