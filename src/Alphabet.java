@@ -11,11 +11,19 @@ public class Alphabet {
              'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь','Э', 'Ю', 'Я'
      };
 
+    private final char[] SPECIAL_SYMBOLS = {
+            '.', ',', '"', ':', '-', '!', '?', ' '
+    };
+
     public char[] getLOW_CASE() {
         return LOW_CASE;
     }
 
     public char[] getUP_CASE() {
         return UP_CASE;
+    }
+
+    public char[] getSPECIAL_SYMBOLS() {
+        return SPECIAL_SYMBOLS;
     }
 }
