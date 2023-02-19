@@ -1,5 +1,5 @@
 public class Decryption {
-
+    /* Decryption algorithm */
     public static String decryption(String text, int step) {
         String result = "";
         Alphabet alphabet = new Alphabet();

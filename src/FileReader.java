@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
@@ -13,8 +12,6 @@ public class FileReader {
         try {
             byte[] arrayBytes = readAllBytes(path);
             result = new String(arrayBytes, StandardCharsets.UTF_8);
-        } catch (FileNotFoundException e) {
-            return null;
         } catch (IOException e) {
             return null;
         }

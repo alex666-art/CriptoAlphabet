@@ -1,5 +1,5 @@
 public class Encryption {
-
+    /* Encryption algorithm */
     public static String encryption(String text, int step) {
         String result = "";
         Alphabet alphabet = new Alphabet();
