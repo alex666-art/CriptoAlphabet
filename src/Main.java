@@ -25,7 +25,7 @@ public class Main {
 
         while (true) {
             /* Suggested options for the user */
-            System.out.println("\nEnter the command (Encryption/Decryption/Exit)");
+            System.out.println("\nEnter the command (Encryption/Decryption/Break-in/Exit)");
             /* Enter the encryption key and write path in to the variable "path"**/
             String command = scanner.nextLine();
             String pathFile = null;
@@ -56,6 +56,14 @@ public class Main {
 
                 /* Create new document and write encryption text in to the new file, using "writeText" method of the FileWriter class*/
                 fileWriter.writeText(encryptionText, writeFileName(FILE_SOURCE, counter));
+            }
+            /* Break-in command */
+            if (command.equalsIgnoreCase("break-in")) {
+                System.out.print("Enter path to original file: ");
+                pathFile = scanner.nextLine();
+
+                /* Iterating over text using the brute force method*/
+                BrutForce.brutForce(pathFile);
             }
             /* Exit program command */
             if (command.equalsIgnoreCase("exit")) {
