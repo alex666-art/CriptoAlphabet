@@ -47,6 +47,10 @@ public class Main {
             if (command.equalsIgnoreCase("decryption")) {
                 System.out.print("Enter path to original file: ");
                 pathFile = scanner.nextLine();
+                if (key == null) {
+                    System.out.print("Enter encryption key: ");
+                    key = scanner.nextLine();
+                }
 
                 /* Save text from the text.txt file in to the "text" variable*/
                 String text = fileReader.readText(pathFile);

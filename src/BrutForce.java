@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.Scanner;
 
 public class BrutForce {
 
@@ -7,25 +6,28 @@ public class BrutForce {
         String result = "";
         FileReader fileReader = new FileReader();
         FileWriter fileWriter = new FileWriter();
+        Vocabulary vocabulary = new Vocabulary();
         String originalText = fileReader.readText(path);
-        Scanner scanner = new Scanner(System.in);
 
         for (int i = 0; i < 33; i++) {
-            result = Decryption.decryption(originalText, i);
-            System.out.println(result);
-            System.out.println("Right text?");
-            String answer = scanner.nextLine();
-            if (answer.equalsIgnoreCase("no")) {
-                continue;
-            }
-            if (answer.equalsIgnoreCase("yes")){
-                try {
-                    fileWriter.writeText(result, path);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+            for (int j = 0; j < vocabulary.getVocabulary().size(); j++) {
+                result = Decryption.decryption(originalText, i);
+                char[] symbols = result.toCharArray();
+                String pattern = vocabulary.getVocabulary().get(j);
+                boolean isSpace = Character.isWhitespace(symbols[j]);
+                if (isSpace) {
+                    for (int x = 0; x < vocabulary.getVocabulary().size(); x++) {
+                        if (result.contains(pattern)) {
+                            try {
+                                fileWriter.writeText(result, path);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            System.out.printf("Break-in was successful on %d iteration", i + 1);
+                            break;
+                        }
+                    }
                 }
-                System.out.printf("Decryption was successful on %d iteration", i+1);
-                break;
             }
         }
         return result;
